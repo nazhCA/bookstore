@@ -4,6 +4,10 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    /*background-image: url("../resources/montreal-bookstore.jpg");*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
 }
 #logo_container {
     display: flex;
@@ -90,9 +94,10 @@ li a:hover:not(.active) {
     width: 20%;
     height: 550px;
     text-align: center;
-    background-color: #f2f0f0;
+    background-color: rgba(255, 248, 239, 0.79);
     border: #017cb3 solid 2px;
     margin: 20px 0;
+    backdrop-filter: blur(4px);
 }
 .book_card > p {
     margin: 0;
@@ -105,6 +110,9 @@ li a:hover:not(.active) {
 }
 .margin-btm-10 {
 margin-bottom: 10px;
+}
+.margin-top-30{
+    margin-top: 30px;
 }
 .cover_photos {
     max-width: 80%;
@@ -138,24 +146,24 @@ margin-bottom: 10px;
  .bg-color-main {
      background-color: #017cb3;
  }
- table{
+ .basic_table{
      width: 800px;
      border: #555555 solid 2px;
      font-size: 20px;
  }
- table tr, td, th {
+.basic_table tr, .basic_table td, .basic_table th {
      border: #555555 solid 2px;
  }
- table td,th {
+.basic_table td, .basic_table th {
      height: 30px;
      text-align: center;
      padding: 0;
      width: 33%;
  }
-table td {
+.basic_table td {
     vertical-align: middle;
 }
-table th {
+.basic_table th {
     background-color: #f2f0f0;
 }
 .table_wrapper {
@@ -165,7 +173,6 @@ table th {
      width: 100%;
  }
  .btn {
-     background-color:  #017cb3;
      border: none;
      border-radius: 10px;
      color: white;
@@ -177,6 +184,15 @@ table th {
      display: inline-block;
      font-size: 16px;
  }
+ .btn-color-primary{
+     background-color:  #017cb3;
+ }
+ .btn-color-delete {
+     background-color: #d30016;
+ }
+.btn-color-reset {
+    background-color: #d38d00;
+}
  .button_container {
      display: flex;
      justify-content: space-around;
@@ -205,5 +221,32 @@ table th {
  .author_text_wrapper {
      display: table;
      width: 100%;
+ }
+ .top_left_btn {
+     top: 0; !important;
+     left: 0; !important;
+     position: absolute; !important;
+     margin-top: 15px;
+     margin-left: 15px;
+ }
+ .no_text_decor{
+     text-decoration: none;
+     color: inherit;
+ }
+ .info_bar {
+     position: absolute;
+     height: 30px;
+     font-size: 20px;
+     width:100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+ }
+ .bg-color-success{
+     background-color: #4CAF50;
+ }
+ .bg-color-fail {
+     background-color: #d30016;
  }
 

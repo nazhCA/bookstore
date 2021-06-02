@@ -1,0 +1,171 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.align_start {
+    align-items: start;
+}
+.block {
+    display: flex;
+    width: 20%;
+}
+.categories_table {
+    width: 100%;
+    border: none;
+}
+.categories_table th {
+    background-color: #f2f0f0;
+    vertical-align: middle;
+    border: none;
+}
+.categories_table td {
+    border: none;
+}
+.categories_table tr:nth-child(2n) {
+    background-color: #b3b0af;
+}
+.categories_table td:nth-child(2n){
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.book_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-flow: column;
+}
+.add_book_form {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-flow: column;
+}
+.add_book_form_controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+    flex-flow: row;
+    margin-top: 30px;
+}
+.enlarge_btn {
+    width: 400px; !important;
+    height: 200px; !important;
+    font-size: 40px;
+    border-radius: 30px;
+}
+.book_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-flow: column;
+}
+.container_inside {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.book_cover_photo{
+    max-width:50%;
+    max-height:50%;
+    min-height:100%;
+    resize: both;
+}
+.book_info p {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+.container_book_info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-flow: column;
+    height: 100%;
+    margin-left: 40px;
+}
+.container_book_info .main_info {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.container_book_info .secondary_info {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row;
+}
+.categories{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+}
+.container_book_info .info_title {
+    font-size: 40px;
+    text-align: center;
+}
+.container_book_info .info_author {
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 5px;
+}
+.info_price {
+    font-size: 30px;
+}
+.info_quantity {
+    font-size: 30px;
+}
+.book_controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+}
+.container_part {
+    width: 45%;
+    max-width: 45%;
+    min-width: 45%;
+}
+.table_format table, .table_format td, .table_format th{
+    font-size: 20px;
+}
+.table_format th{
+    background-color: #afadad;
+    vertical-align: middle;
+}
+.table_format tr{
+    background-color: rgba(1, 138, 190, 0.56);
+    height: 35px;
+}
+.table_format tr:nth-child(2n){
+    background-color: rgba(1, 115, 170, 0.74);
+}
+.table_format td {
+    vertical-align: middle;
+    text-align: center;
+}
+.table_format a {
+    text-decoration: none;
+    color: inherit;
+}
+.height-25per {
+    height: 25%;
+}
+.table_caption {
+    font-size: 30px;
+    font-weight: bold;
+}

@@ -4,54 +4,34 @@
 
 <body>
 <?php include_once 'includes/logo.php';
-include 'model/DbCon.php';
+
 session_start();
-$obj = new DbCon();
 if (!empty($_POST['order'])){
-    $obj->orderBooks(session_id(), $_POST['user_name'], $_POST['user_phone']);
+    $dbcon->orderBooks(session_id(), $_POST['user_name'], $_POST['user_phone']);
     $data = [];
 }else {
-    $data = $obj->getBooksBySessionId(session_id());
+    $data = $dbcon->getBooksBySessionId(session_id());
+}
+if (!empty($_POST['id'])){
+    $dbcon->deleteBookFromCart(session_id(), $_POST['id']);
+    header("Refresh:0");
+
 }
 
 
 ?>
-<div class="main_container_orders">
-            <div class="table_wrapper">
-                <table>
-                    <colgroup>
-                        <col style="width: 25%">
-                        <col style="width: 60%">
-                        <col style="width: 15%">
-                    </colgroup>
-                    <tr>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                    </tr>
+<div class="main_container_orders margin-top-30">
+
 <?php
-if ($data){
-    foreach ($data as $item){
-        echo '        <tr>
-                        <td>' . $item['author'] . '</td>
-                        <td>' . $item['name'] . '</td>
-                        <td>' . $item['price'] . '</td>
-                    </tr>
-                ';
-    }
-}
+    $displayer->displayBasicTable($data, false, false, true);
 ?>
-                </table>
-            </div>
 
+    <button onclick="location.href='./index.php'" class="btn btn-color-primary top_left_btn" type="button">Back</button>
 <div class="button_container">
-
-    <button onclick="location.href='./index.php'" class="btn" type="button">
-        Back</button>
     <form class="user_form" action="my-orders.php" method="post">
         <input type="text" name="user_name" class="user_input" placeholder="Name" required>
         <input type="text" name="user_phone" class="user_input" placeholder="Telephone" required>
-        <button class="btn" name="order" value="valami">Submit</button>
+        <button class="btn btn-color-primary" name="order" value="valami">Submit order</button>
     </form>
 </div>
 </div>
