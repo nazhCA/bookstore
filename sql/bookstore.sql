@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Máj 28. 11:35
+-- Létrehozás ideje: 2021. Jún 02. 16:45
 -- Kiszolgáló verziója: 10.4.19-MariaDB
 -- PHP verzió: 8.0.6
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `bookstore`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -29,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `books` (
   `id` int(11) NOT NULL,
-  `author` varchar(200) NOT NULL,
   `name` varchar(200) NOT NULL,
+  `author` varchar(200) NOT NULL,
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `image` varchar(200) NOT NULL
@@ -40,14 +39,18 @@ CREATE TABLE `books` (
 -- A tábla adatainak kiíratása `books`
 --
 
-INSERT INTO `books` (`id`, `author`, `name`, `price`, `quantity`, `image`) VALUES
-(1, 'J.K.Rowling', 'Harry Potter and the goblet of fire', 5000, 10, 'HP4cover.jpg'),
-(2, 'Julie Kagawa', 'Iron King', 5000, 5, 'ironking.jpg'),
-(4, 'Max Brooks', 'World War Z', 6000, 10, 'wwz.jpg'),
-(5, 'George Orwell', '1984', 15000, 5, '1984.jpg'),
-(6, 'J.R.R. Tolkien', 'The Lord of the Rings: The Fellowship of the Ring', 10000, 3, 'lotr1.jpg'),
-(7, 'Andy Weir', 'The Martian', 5000, 13, 'themartian.jpg'),
-(8, 'J. D. Salinger', 'The Catcher in the Rye', 4000, 0, 'catcher.jpg');
+INSERT INTO `books` (`id`, `name`, `author`, `price`, `quantity`, `image`) VALUES
+(1, 'Harry Potter and the Goblet of Fire', 'J.K.Rowling', 5000, 10, 'HP4cover.jpg'),
+(2, 'Iron King', 'Julie Kagawa', 5000, 5, 'ironking.jpg'),
+(4, 'World War Z', 'Max Brooks', 6000, 10, 'wwz.jpg'),
+(5, '1984', 'George Orwell', 15000, 5, '1984.jpg'),
+(6, 'The Lord of the Rings: The Fellowship of the Ring', 'J.R.R. Tolkien', 10000, 3, 'lotr1.jpg'),
+(7, 'The Martian', 'Andy Weir', 5000, 13, 'themartian.jpg'),
+(8, 'The Catcher in the Rye', 'J. D. Salinger', 4000, 0, 'catcher.jpg'),
+(17, 'To Kill a Mockingbird', 'Harper Lee', 13000, 12, 'mocking.jpg'),
+(18, 'The Great Gatsby', 'F. Scott Fitzgerald', 9000, 30, 'gatsby.jpg'),
+(20, 'It', 'Stephen King', 5000, 5, 'it.jpg'),
+(22, 'Sam', 'Iain Rob Wright', 4000, 3, 'sam.jpg');
 
 -- --------------------------------------------------------
 
@@ -67,12 +70,17 @@ CREATE TABLE `book_categories` (
 INSERT INTO `book_categories` (`book_id`, `categ_name`) VALUES
 (1, 'fantasy'),
 (2, 'fantasy'),
+(4, 'comedy'),
 (4, 'drama'),
-(5, 'drama'),
 (5, 'crime'),
-(7, 'sci-fi'),
+(5, 'drama'),
+(6, 'fantasy'),
 (7, 'drama'),
-(6, 'fantasy');
+(18, 'crime'),
+(18, 'drama'),
+(20, 'crime'),
+(22, 'drama'),
+(22, 'horror');
 
 -- --------------------------------------------------------
 
@@ -92,11 +100,14 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `session_id`, `book_id`, `active`) VALUES
-(78, '2lrr384j35r6ksqokm8uok67pg', 1, 0),
-(79, '2lrr384j35r6ksqokm8uok67pg', 2, 0),
-(80, '2lrr384j35r6ksqokm8uok67pg', 4, 0),
-(83, 'fte61h8h51j9hhp20t3b7eiuod', 5, 1),
-(84, 'fte61h8h51j9hhp20t3b7eiuod', 6, 1);
+(174, 'mph7ahbmk0bod01pdj043ij5ql', 4, 0),
+(178, '3h1an60sm42bqqjvbbno64skgk', 2, 0),
+(179, '3h1an60sm42bqqjvbbno64skgk', 5, 0),
+(180, '3h1an60sm42bqqjvbbno64skgk', 22, 0),
+(181, '3h1an60sm42bqqjvbbno64skgk', 20, 0),
+(182, 'q779veu3j3t6odmgnim4p55p3t', 7, 1),
+(183, 'q779veu3j3t6odmgnim4p55p3t', 6, 1),
+(184, 'q779veu3j3t6odmgnim4p55p3t', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +128,7 @@ INSERT INTO `categories` (`name`) VALUES
 ('crime'),
 ('drama'),
 ('fantasy'),
-('romantic'),
+('horror'),
 ('sci-fi');
 
 -- --------------------------------------------------------
@@ -131,17 +142,22 @@ CREATE TABLE `orders` (
   `session_id` varchar(50) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `user_phone` varchar(50) NOT NULL,
-  `book_id` int(11) NOT NULL
+  `book_id` int(11) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `session_id`, `user_name`, `user_phone`, `book_id`) VALUES
-(31, '2lrr384j35r6ksqokm8uok67pg', 'Laci', '+341241252', 1),
-(32, '2lrr384j35r6ksqokm8uok67pg', 'Laci', '+341241252', 2),
-(33, '2lrr384j35r6ksqokm8uok67pg', 'Laci', '+341241252', 4);
+INSERT INTO `orders` (`order_id`, `session_id`, `user_name`, `user_phone`, `book_id`, `date`) VALUES
+(49, 'mph7ahbmk0bod01pdj043ij5ql', 'Laci', '+341241252', 1, '2021-06-02'),
+(50, 'mph7ahbmk0bod01pdj043ij5ql', 'Laci', '+341241252', 2, '2021-06-02'),
+(51, 'mph7ahbmk0bod01pdj043ij5ql', 'Laci', '+341241252', 4, '2021-06-02'),
+(52, '3h1an60sm42bqqjvbbno64skgk', 'Nóra', '+36201231234', 2, '2021-06-02'),
+(53, '3h1an60sm42bqqjvbbno64skgk', 'Nóra', '+36201231234', 5, '2021-06-02'),
+(54, '3h1an60sm42bqqjvbbno64skgk', 'Nóra', '+36201231234', 20, '2021-06-02'),
+(55, '3h1an60sm42bqqjvbbno64skgk', 'Nóra', '+36201231234', 22, '2021-06-02');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -158,8 +174,9 @@ ALTER TABLE `books`
 -- A tábla indexei `book_categories`
 --
 ALTER TABLE `book_categories`
-  ADD KEY `const_book_id` (`book_id`),
-  ADD KEY `const_categ_name` (`categ_name`);
+  ADD PRIMARY KEY (`book_id`,`categ_name`),
+  ADD KEY `book_id` (`book_id`),
+  ADD KEY `categ_name` (`categ_name`);
 
 --
 -- A tábla indexei `carts`
@@ -189,19 +206,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT a táblához `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT a táblához `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT a táblához `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -211,14 +228,14 @@ ALTER TABLE `orders`
 -- Megkötések a táblához `book_categories`
 --
 ALTER TABLE `book_categories`
-  ADD CONSTRAINT `const_book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `const_categ_name` FOREIGN KEY (`categ_name`) REFERENCES `categories` (`name`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `const_book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `const_categ_name` FOREIGN KEY (`categ_name`) REFERENCES `categories` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `carts`
 --
 ALTER TABLE `carts`
-  ADD CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `orders`
