@@ -249,4 +249,15 @@ margin-bottom: 10px;
  .bg-color-fail {
      background-color: #d30016;
  }
+ .control_panel {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-flow: column;
+ }
+.control_panel p{
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
 
